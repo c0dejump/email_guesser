@@ -10,7 +10,6 @@ from bs4 import BeautifulSoup
 import time
 import random
 from validate_email_address import validate_email
-import DNS
 
 try:
     from Queue import Queue
@@ -71,11 +70,7 @@ def check_haveibeenpwnd(mailcheck, requestPwnedStartTimer):
 def email_validation(i, q, requestPwnedStartTimer, s):
     for n in range(len_mails):
         email = q.get()
-        try:
-            is_valid = validate_email(email, verify=True)
-        except:
-            DNS.defaults['server']=['8.8.8.8', '8.8.4.4']
-            is_valid = validate_email(email, verify=True)
+        is_valid = validate_email(email, verify=True)
         if is_valid:
             print("\033[32m \u251c {}\033[0m exist".format(email))
             with open("{}.txt".format(sys.argv[2]), "a+") as write_email:
