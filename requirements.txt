@@ -2,3 +2,4 @@ requests
 bs4
 argparse
 queuelib
+validate_email_address
